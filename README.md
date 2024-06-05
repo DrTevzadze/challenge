@@ -1,30 +1,44 @@
-# React + TypeScript + Vite
+# Settlement App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+This project is a Settlement Application that allows Party A and Party B to negotiate and agree on settlement amounts. The main features include:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Party A can submit and modify settlement amounts.
+- Party B can view settlement proposals, agree, or object to them.
+- Real-time updates to ensure both parties see the latest information.
+- Handling of simultaneous modifications and responses.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Redux Toolkit
+- React Router
+- Axios (for potential API requests)
+- Classnames (for conditionally applying CSS classes)
+- Tailwind CSS
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Installation
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/DrTevzadze/challenge.git
+   cd leyline-challenge
+
+   ```
+
+2. **Install Dependencies:**
+
+   ```bash
+   npm install
+
+   ```
+
+3. **Run the Project:**
+   ```bash
+   npm run dev
+   ```
