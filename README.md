@@ -27,7 +27,7 @@ This project is a Settlement Application that allows Party A and Party B to nego
 
    ```bash
    git clone https://github.com/DrTevzadze/challenge.git
-   cd leyline-challenge
+   cd challenge
 
    ```
 
