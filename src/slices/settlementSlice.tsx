@@ -21,6 +21,7 @@ const settlementSlice = createSlice({
   initialState,
   reducers: {
     addSettlement: (state, action: PayloadAction<Settlement>) => {
+      // Push the payload to the settlements array
       state.settlements.push(action.payload);
     },
     updateSettlement: (
@@ -31,6 +32,7 @@ const settlementSlice = createSlice({
         (s) => s.id === action.payload.id
       );
       if (settlement) {
+        // Update current amount to the payload's amount (when partyB or partyA will modify the request)
         settlement.amount = action.payload.amount;
       }
     },
