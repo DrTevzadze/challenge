@@ -38,7 +38,7 @@ function Welcome() {
             show ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"
           }`}
         >
-          Welcome to David Tevzadze's Settlement App!
+          Welcome to Settlement Demo App!
         </h1>
         <h2
           className={`text-3xl text-white mb-4  transition-all duration-1000 transform animate-pulse ${
