@@ -1,8 +1,13 @@
-import { FormData } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addSettlement } from "../../slices/settlementSlice";
+
+export interface FormData {
+  title: string;
+  settlementAmount: string;
+  textArea: string;
+}
 
 function PartyAForm() {
   const [formData, setFormData] = useState<FormData>({
