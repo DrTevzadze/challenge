@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import settlementReducer from "./slices/settlementSlice.tsx";
 import formReducer from "./slices/formSlice.tsx";
+import uiReducer from "./slices/uiSlice.tsx";
 
 export const store = configureStore({
   reducer: {
     settlement: settlementReducer,
     forms: formReducer,
+    isOpenForm: uiReducer,
   },
 });
 
