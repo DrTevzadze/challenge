@@ -1,16 +1,52 @@
-import { FormData as PartyBFormData } from "./PartyB";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateSettlement } from "../../slices/settlementSlice";
+import { RootState } from "../../store";
 
-export interface PartyBFormProps {
-  formData: PartyBFormData;
-  handleChange: (
+export interface FormData {
+  comment: string;
+  settlementAmount: string;
+  action: string;
+  selectedSettlement: string;
+}
+
+function PartyBForm() {
+  const settlements = useSelector(
+    (state: RootState) => state.settlement.settlements
+  );
+  const [formData, setFormData] = useState<FormData>({
+    comment: "",
+    settlementAmount: "",
+    action: "Update",
+    selectedSettlement: settlements.length > 0 ? settlements[0].id : "",
+  });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
-  ) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-}
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
 
-function PartyBForm({ formData, handleChange, handleSubmit }: PartyBFormProps) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const amount = Number(formData.settlementAmount);
+
+    dispatch(updateSettlement({ id: formData.selectedSettlement, amount }));
+
+    const status = formData.action === "Approve" ? "Finished" : "Pending";
+
+    dispatch(updateSettlement({ id: formData.selectedSettlement, status }));
+    console.log("PartyB Submitting Response Form:", formData);
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
