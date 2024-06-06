@@ -7,24 +7,21 @@ interface FormData {
   comment: string;
   settlementAmount: string;
   action: string;
+  selectedSettlement: string;
 }
 
 function PartyB() {
+  const settlements = useSelector(
+    (state: RootState) => state.settlement.settlements
+  );
   const [formData, setFormData] = useState<FormData>({
     comment: "",
     settlementAmount: "",
     action: "Update",
+    selectedSettlement: settlements.length > 0 ? settlements[0].id : "",
   });
 
   const dispatch = useDispatch();
-  const settlements = useSelector(
-    (state: RootState) => state.settlement.settlements
-  );
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedSettlement, setSelectedSettlement] = useState(
-    settlements.length > 0 ? settlements[0].id : ""
-  );
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -42,11 +39,11 @@ function PartyB() {
     e.preventDefault();
     const amount = Number(formData.settlementAmount);
 
-    dispatch(updateSettlement({ id: selectedSettlement, amount }));
+    dispatch(updateSettlement({ id: formData.selectedSettlement, amount }));
 
     const status = formData.action === "Approve" ? "Finished" : "Pending";
 
-    dispatch(updateSettlement({ id: selectedSettlement, status }));
+    dispatch(updateSettlement({ id: formData.selectedSettlement, status }));
     console.log("PartyB Submitting Response Form:", formData);
   };
 
