@@ -1,4 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { addForm } from "../../slices/formSlice";
 import AddFormButton from "./AddFormButton";
 import FormCard from "./FormCard";
 
@@ -6,33 +9,39 @@ interface FormListProps {
   view: "PartyA" | "PartyB";
 }
 
-function FormList({ view }: FormListProps) {
-  const [forms, setForms] = useState<{ id: number; status: string }[]>([]);
+const FormList: React.FC<FormListProps> = ({ view }) => {
+  const [showForm, setShowForm] = useState(false);
   const [nextId, setNextId] = useState(1);
+  const dispatch = useDispatch();
+  const forms = useSelector((state: RootState) => state.forms.forms);
 
-  const addForm = () => {
-    setForms([...forms, { id: nextId, status: "pending" }]);
-    setNextId((prev) => prev + 1);
+  const handleAddForm = () => {
+    setShowForm(true);
+    dispatch(addForm({ id: nextId, status: "pending" }));
+    setNextId(nextId + 1);
   };
 
-  const handleComplete = (id: number) => {
-    setForms(
-      forms.map((form) =>
-        form.id === id ? { ...form, status: "finished" } : form
-      )
-    );
+  const handleFormComplete = () => {
+    setShowForm(false);
   };
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md my-2">
-      {view === "PartyA" ? <AddFormButton onClick={addForm} /> : null}
+    <div>
+      {view === "PartyA" ? (
+        <>
+          <AddFormButton onClick={handleAddForm} />
+          {showForm && (
+            <FormCard id={nextId - 1} onComplete={handleFormComplete} />
+          )}
+        </>
+      ) : null}
       <div className="space-y-4">
         {forms.map((form) => (
-          <FormCard key={form.id} id={form.id} onComplete={handleComplete} />
+          <FormCard key={form.id} id={form.id} isPartyB={view === "PartyB"} />
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default FormList;
