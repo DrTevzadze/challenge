@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Provider } from "react-redux";
-import PartyA from "../components/PartyA";
-import PartyB from "../components/PartyB";
+import PartyA from "../components/partyA/PartyA";
+import PartyB from "../components/partyB/PartyB";
 import FormList from "../components/formList/FormList";
 import { store } from "../store";
 
