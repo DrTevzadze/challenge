@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { addForm } from "../../slices/formSlice";
+import { setIsFormOpen } from "../../slices/uiSlice";
 import AddFormButton from "./AddFormButton";
 import FormCard from "./FormCard";
 
@@ -26,6 +27,7 @@ function FormList({ view }: FormListProps) {
 
   const handleAddForm = () => {
     setShowForm(true);
+    dispatch(setIsFormOpen(true))
   };
 
   const handleFormComplete = () => {

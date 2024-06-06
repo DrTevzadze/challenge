@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     settlement: settlementReducer,
     forms: formReducer,
-    isOpenForm: uiReducer,
+    ui: uiReducer,
   },
 });
 
