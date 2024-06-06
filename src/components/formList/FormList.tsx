@@ -9,7 +9,7 @@ interface FormListProps {
   view: "PartyA" | "PartyB";
 }
 
-const FormList: React.FC<FormListProps> = ({ view }) => {
+function FormList({ view }: FormListProps) {
   const [showForm, setShowForm] = useState(false);
   const [nextId, setNextId] = useState(1);
 
@@ -49,6 +49,6 @@ const FormList: React.FC<FormListProps> = ({ view }) => {
       </div>
     </div>
   );
-};
+}
 
 export default FormList;

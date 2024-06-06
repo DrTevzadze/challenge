@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormsStatus } from "../../slices/formSlice";
 import { RootState } from "../../store";
@@ -9,7 +8,7 @@ interface FormCardProps {
   onComplete?: (id: number) => void;
 }
 
-const FormCard: React.FC<FormCardProps> = ({ id, isPartyB, onComplete }) => {
+function FormCard({ id, isPartyB, onComplete }: FormCardProps) {
   const dispatch = useDispatch();
   const form = useSelector((state: RootState) =>
     state.forms.forms.find((form) => form.id === id)
@@ -29,8 +28,8 @@ const FormCard: React.FC<FormCardProps> = ({ id, isPartyB, onComplete }) => {
   }
 
   return (
-    <div className="border p-4 m-2">
-      <h2>Form: {id}</h2>
+    <div className="border p-4 m-2 rounded-md shadow-">
+      <h2 className="text-xl">Form: {id}</h2>
       <p>Status: {form.status}</p>
       {isPartyB && (
         <button className="bg-green-500 text-white p-2" onClick={handleApprove}>
@@ -39,6 +38,6 @@ const FormCard: React.FC<FormCardProps> = ({ id, isPartyB, onComplete }) => {
       )}
     </div>
   );
-};
+}
 
 export default FormCard;
