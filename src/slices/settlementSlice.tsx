@@ -26,14 +26,20 @@ const settlementSlice = createSlice({
     },
     updateSettlement: (
       state,
-      action: PayloadAction<{ id: string; amount: number }>
+      action: PayloadAction<{ id: string; amount?: number; status?: string }>
     ) => {
       const settlement = state.settlements.find(
         (s) => s.id === action.payload.id
       );
       if (settlement) {
         // Update current amount to the payload's amount (when partyB or partyA will modify the request)
-        settlement.amount = action.payload.amount;
+        if (action.payload.amount) {
+          settlement.amount = action.payload.amount;
+        }
+        // Update current status to the payload's status
+        if (action.payload.status) {
+          settlement.status = action.payload.status;
+        }
       }
     },
   },

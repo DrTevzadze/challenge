@@ -18,6 +18,7 @@ This project is a Settlement Application that allows Party A and Party B to nego
 - Axios (for potential API requests)
 - Classnames (for conditionally applying CSS classes)
 - Tailwind CSS
+- uuid (for unique IDs)
 
 ## Getting Started
 
