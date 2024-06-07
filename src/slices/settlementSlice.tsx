@@ -1,28 +1,22 @@
+// settlementSlice.tsx
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Settlement {
-  id: string;
-  partyA: string;
-  partyB: string;
-  amount: number;
-  status: string;
-}
+import { database, FormData } from "../database/database";
 
 interface SettlementState {
-  settlements: Settlement[];
+  settlements: FormData[];
 }
 
 const initialState: SettlementState = {
-  settlements: [],
+  settlements: database,
 };
 
 const settlementSlice = createSlice({
   name: "settlement",
   initialState,
   reducers: {
-    addSettlement: (state, action: PayloadAction<Settlement>) => {
-      // Push the payload to the settlements array
+    addSettlement: (state, action: PayloadAction<FormData>) => {
       state.settlements.push(action.payload);
+      database.push(action.payload); // Update the in-memory database
     },
     updateSettlement: (
       state,
@@ -32,13 +26,22 @@ const settlementSlice = createSlice({
         (s) => s.id === action.payload.id
       );
       if (settlement) {
-        // Update current amount to the payload's amount (when partyB or partyA will modify the request)
-        if (action.payload.amount) {
+        if (action.payload.amount !== undefined) {
           settlement.amount = action.payload.amount;
         }
-        // Update current status to the payload's status
         if (action.payload.status) {
           settlement.status = action.payload.status;
+        }
+      }
+
+      // Update the in-memory database
+      const dbSettlement = database.find((s) => s.id === action.payload.id);
+      if (dbSettlement) {
+        if (action.payload.amount !== undefined) {
+          dbSettlement.amount = action.payload.amount;
+        }
+        if (action.payload.status) {
+          dbSettlement.status = action.payload.status;
         }
       }
     },
