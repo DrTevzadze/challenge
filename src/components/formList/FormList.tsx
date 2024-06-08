@@ -24,9 +24,7 @@ const FormList: React.FC<FormListProps> = ({ view }) => {
     }
   }, [showForm, nextId, dispatch]);
 
-  const handleAddForm = () => {
-    setShowForm(true);
-  };
+
 
   const handleFormComplete = () => {
     setShowForm(false);
@@ -36,7 +34,7 @@ const FormList: React.FC<FormListProps> = ({ view }) => {
     <div className="bg-white p-4 rounded-md shadow-md my-4">
       {view === "PartyA" ? (
         <>
-          <AddFormButton onClick={handleAddForm} />
+          <AddFormButton />
           {showForm && (
             <FormCard id={nextId - 1} onComplete={handleFormComplete} />
           )}

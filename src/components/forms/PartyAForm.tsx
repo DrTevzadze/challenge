@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 import { addSettlement } from "../../slices/settlementSlice";
 import { v4 as uuidv4 } from "uuid";
 
-const PartyAForm: React.FC = () => {
+interface PartyAFormProps {
+  onAddForm: (title: string) => void;
+}
+
+const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm }) => {
   const [formData, setFormData] = useState({
     title: "",
     settlementAmount: "",
@@ -33,6 +37,7 @@ const PartyAForm: React.FC = () => {
       status: "Pending",
     };
     dispatch(addSettlement(newSettlement));
+    onAddForm(formData.title); // Call the onAddForm prop with the title
     console.log("Form Data Submitted:", formData);
   };
 
@@ -48,7 +53,7 @@ const PartyAForm: React.FC = () => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-xl font-bold mb-2"
-            htmlFor="settlementAmount"
+            htmlFor="title"
           >
             Title
           </label>

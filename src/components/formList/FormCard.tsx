@@ -30,7 +30,7 @@ const FormCard: React.FC<FormCardProps> = ({ id, isPartyB, onComplete }) => {
 
   return (
     <div className="border p-4 m-2">
-      <h2>Form: {id}</h2>
+      <h2>Form: {form.title}</h2>
       <p>Status: {form.status}</p>
       {isPartyB && (
         <button className="bg-green-500 text-white p-2" onClick={handleApprove}>

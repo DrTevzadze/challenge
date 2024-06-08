@@ -3,13 +3,20 @@ import { Provider } from "react-redux";
 import PartyA from "../components/PartyA";
 import PartyB from "../components/PartyB";
 import FormList from "../components/formList/FormList";
+import { addForm } from "../slices/formSlice";
 import { store } from "../store";
 
 function Homepage() {
   const [currentView, setCurrentView] = useState<"PartyA" | "PartyB">("PartyA");
+  const [nextId, setNextId] = useState(1);
 
   const toggleView = () => {
     setCurrentView(currentView === "PartyA" ? "PartyB" : "PartyA");
+  };
+
+  const handleAddForm = (title: string) => {
+    store.dispatch(addForm({ id: nextId, title, status: "pending" }));
+    setNextId((prev) => prev + 1);
   };
 
   return (
@@ -28,7 +35,7 @@ function Homepage() {
         </header>
         <main className="mt-4">
           <FormList view={currentView} />
-          {currentView === "PartyA" ? <PartyA /> : <PartyB />}
+          {currentView === "PartyA" ? <PartyA onAddForm={handleAddForm} /> : <PartyB />}
         </main>
       </div>
     </Provider>

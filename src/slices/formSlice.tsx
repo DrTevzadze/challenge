@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FormState {
   id: number;
+  title: string;
   status: string;
 }
 
@@ -20,7 +21,7 @@ const formSlice = createSlice({
     addForm: (state, action: PayloadAction<FormState>) => {
       state.forms.push(action.payload);
     },
-    updateFormsStatus: (state, action: PayloadAction<{id: number, status: string}>) => {
+    updateFormsStatus: (state, action: PayloadAction<{ id: number; status: string }>) => {
       const form = state.forms.find((form) => form.id === action.payload.id);
       if (form) {
         form.status = action.payload.status;

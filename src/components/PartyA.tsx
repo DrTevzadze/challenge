@@ -1,10 +1,14 @@
 import React from "react";
 import PartyAForm from "./forms/PartyAForm";
 
-const PartyA: React.FC = () => {
+interface PartyAProps {
+  onAddForm: (title: string) => void;
+}
+
+const PartyA: React.FC<PartyAProps> = ({ onAddForm }) => {
   return (
     <div className="container mx-auto">
-      <PartyAForm />
+      <PartyAForm onAddForm={onAddForm} />
     </div>
   );
 };
