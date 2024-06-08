@@ -15,7 +15,15 @@ function Homepage() {
   };
 
   const handleAddForm = (title: string, amount: number, textArea: string) => {
-    store.dispatch(addForm({ id: nextId, title, settlementAmount: amount, textArea, status: "pending" }));
+    store.dispatch(
+      addForm({
+        id: nextId,
+        title,
+        settlementAmount: amount,
+        textArea,
+        status: "pending",
+      })
+    );
     setNextId((prev) => prev + 1);
   };
 
@@ -34,8 +42,9 @@ function Homepage() {
           </button>
         </header>
         <main className="mt-4">
+          {currentView === "PartyA" && <PartyA />}
           <FormList view={currentView} onAddForm={handleAddForm} />
-          {currentView === "PartyA" ? <PartyA /> : <PartyB />}
+          {currentView === "PartyB" && <PartyB />}
         </main>
       </div>
     </Provider>
