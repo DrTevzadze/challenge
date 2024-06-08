@@ -18,31 +18,31 @@ const FormList: React.FC<FormListProps> = ({ view }) => {
 
   useEffect(() => {
     if (showForm) {
-      dispatch(addForm({ id: nextId, status: "pending" }));
+      dispatch(
+        addForm({
+          id: nextId,
+          status: "pending",
+          title: "",
+          settlementAmount: 0,
+          textArea: "",
+        })
+      );
       setNextId((prev) => prev + 1);
       setShowForm(false);
     }
   }, [showForm, nextId, dispatch]);
-
-
-
-  const handleFormComplete = () => {
-    setShowForm(false);
-  };
 
   return (
     <div className="bg-white p-4 rounded-md shadow-md my-4">
       {view === "PartyA" ? (
         <>
           <AddFormButton />
-          {showForm && (
-            <FormCard id={nextId - 1} onComplete={handleFormComplete} />
-          )}
+          {showForm && <FormCard id={nextId - 1} />}
         </>
       ) : null}
       <div className="space-y-4">
         {forms.map((form) => (
-          <FormCard key={form.id} id={form.id} isPartyB={view === "PartyB"} />
+          <FormCard key={form.id} id={form.id} />
         ))}
       </div>
     </div>

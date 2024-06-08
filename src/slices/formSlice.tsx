@@ -5,6 +5,7 @@ interface FormState {
   title: string;
   settlementAmount: number;
   status: string;
+  textArea: string; // Add this if comments are included in the form state
 }
 
 interface FormsState {
@@ -28,8 +29,14 @@ const formSlice = createSlice({
         form.status = action.payload.status;
       }
     },
+    updateFormAmount: (state, action: PayloadAction<{ id: number; amount: number }>) => {
+      const form = state.forms.find((form) => form.id === action.payload.id);
+      if (form) {
+        form.settlementAmount = action.payload.amount;
+      }
+    },
   },
 });
 
-export const { addForm, updateFormsStatus } = formSlice.actions;
+export const { addForm, updateFormsStatus, updateFormAmount } = formSlice.actions;
 export default formSlice.reducer;
