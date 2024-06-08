@@ -47,7 +47,7 @@ const PartyBForm: React.FC = () => {
           </option>
           {forms.map((form) => (
             <option key={form.id} value={form.id}>
-              Form {form.id} - {form.status}
+              Form: {form.title}
             </option>
           ))}
         </select>
