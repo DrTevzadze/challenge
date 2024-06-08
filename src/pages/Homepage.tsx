@@ -14,8 +14,8 @@ function Homepage() {
     setCurrentView(currentView === "PartyA" ? "PartyB" : "PartyA");
   };
 
-  const handleAddForm = (title: string) => {
-    store.dispatch(addForm({ id: nextId, title, status: "pending" }));
+  const handleAddForm = (title: string, amount: number) => {
+    store.dispatch(addForm({ id: nextId, title, settlementAmount: amount, status: "pending" }));
     setNextId((prev) => prev + 1);
   };
 

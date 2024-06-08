@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface FormState {
   id: number;
   title: string;
+  settlementAmount: number;
   status: string;
 }
 

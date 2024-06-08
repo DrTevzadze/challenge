@@ -2,7 +2,7 @@ import React from "react";
 import PartyAForm from "./forms/PartyAForm";
 
 interface PartyAProps {
-  onAddForm: (title: string) => void;
+  onAddForm: (title: string, amount: number) => void;
 }
 
 const PartyA: React.FC<PartyAProps> = ({ onAddForm }) => {

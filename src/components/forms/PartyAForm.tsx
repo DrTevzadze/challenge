@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addSettlement } from "../../slices/settlementSlice";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState } from "react";
 
 interface PartyAFormProps {
-  onAddForm: (title: string) => void;
+  onAddForm: (title: string, amount: number) => void;
 }
 
 const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm }) => {
@@ -13,8 +10,6 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm }) => {
     settlementAmount: "",
     textArea: "",
   });
-
-  const dispatch = useDispatch();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -29,15 +24,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const amount = Number(formData.settlementAmount);
-    const newSettlement = {
-      id: uuidv4(),
-      partyA: formData.title,
-      partyB: "",
-      amount: amount,
-      status: "Pending",
-    };
-    dispatch(addSettlement(newSettlement));
-    onAddForm(formData.title); // Call the onAddForm prop with the title
+    onAddForm(formData.title, amount);
     console.log("Form Data Submitted:", formData);
   };
 
