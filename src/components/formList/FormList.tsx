@@ -1,45 +1,36 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { addForm } from "../../slices/formSlice";
 import AddFormButton from "./AddFormButton";
 import FormCard from "./FormCard";
+import PartyAForm from "../forms/PartyAForm";
 
 interface FormListProps {
   view: "PartyA" | "PartyB";
+  onAddForm: (title: string, settlementAmount: number, textArea: string) => void;
 }
 
-const FormList: React.FC<FormListProps> = ({ view }) => {
+const FormList: React.FC<FormListProps> = ({ view, onAddForm }) => {
   const [showForm, setShowForm] = useState(false);
-  const [nextId, setNextId] = useState(1);
-
-  const dispatch = useDispatch();
   const forms = useSelector((state: RootState) => state.forms.forms);
 
-  useEffect(() => {
-    if (showForm) {
-      dispatch(
-        addForm({
-          id: nextId,
-          status: "pending",
-          title: "",
-          settlementAmount: 0,
-          textArea: "",
-        })
-      );
-      setNextId((prev) => prev + 1);
-      setShowForm(false);
-    }
-  }, [showForm, nextId, dispatch]);
+  const handleAddFormClick = () => {
+    setShowForm(true);
+  };
+
+  const handleFormSubmit = (title: string, settlementAmount: number, textArea: string) => {
+    onAddForm(title, settlementAmount, textArea);
+    setShowForm(false);
+  };
 
   return (
     <div className="bg-white p-4 rounded-md shadow-md my-4">
-      {view === "PartyA" ? (
+      {view === "PartyA" && (
         <>
-          <AddFormButton />
-          {showForm && <FormCard id={nextId - 1} />}
+          <AddFormButton onClick={handleAddFormClick} />
+          {showForm && <PartyAForm onAddForm={handleFormSubmit} />}
         </>
-      ) : null}
+      )}
       <div className="space-y-4">
         {forms.map((form) => (
           <FormCard key={form.id} id={form.id} />

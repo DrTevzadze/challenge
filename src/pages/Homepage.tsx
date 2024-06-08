@@ -14,8 +14,8 @@ function Homepage() {
     setCurrentView(currentView === "PartyA" ? "PartyB" : "PartyA");
   };
 
-  const handleAddForm = (title: string, amount: number) => {
-    store.dispatch(addForm({ id: nextId, title, settlementAmount: amount, status: "pending" }));
+  const handleAddForm = (title: string, amount: number, textArea: string) => {
+    store.dispatch(addForm({ id: nextId, title, settlementAmount: amount, textArea, status: "pending" }));
     setNextId((prev) => prev + 1);
   };
 
@@ -34,8 +34,8 @@ function Homepage() {
           </button>
         </header>
         <main className="mt-4">
-          <FormList view={currentView} />
-          {currentView === "PartyA" ? <PartyA onAddForm={handleAddForm} /> : <PartyB />}
+          <FormList view={currentView} onAddForm={handleAddForm} />
+          {currentView === "PartyA" ? <PartyA /> : <PartyB />}
         </main>
       </div>
     </Provider>
