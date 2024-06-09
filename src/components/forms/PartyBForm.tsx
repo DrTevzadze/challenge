@@ -65,7 +65,9 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold">Party B - View and Respond to Forms</h1>
+      <h1 className="text-2xl font-bold mb-6">
+        Party B - View and Respond to Forms
+      </h1>
       <div className="mb-4">
         <label
           className="block text-gray-700 text-lg font-bold mb-2"
@@ -91,10 +93,16 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
       </div>
       {selectedForm && (
         <div className="mb-4">
-          <h2 className="text-xl font-bold">Form Details</h2>
-          <p><strong>Title:</strong> {selectedForm.title}</p>
-          <p><strong>Settlement Amount:</strong> ${selectedForm.settlementAmount}</p>
-          <p><strong>Comments:</strong> {selectedForm.textArea}</p>
+          <h2 className="text-xl font-bold mb-2">Form Details</h2>
+          <p className="mb-1">
+            <strong>Title:</strong> {selectedForm.title}
+          </p>
+          <p className="mb-1">
+            <strong>Settlement Amount:</strong> ${selectedForm.settlementAmount}
+          </p>
+          <p className="mb-4">
+            <strong>Comments:</strong> {selectedForm.textArea}
+          </p>
         </div>
       )}
       {selectedFormId !== null && (
@@ -140,7 +148,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
           )}
           <button
             onClick={handleSubmit}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-all duration-200"
+            className="bg-blue-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
           >
             Submit
           </button>

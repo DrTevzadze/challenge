@@ -43,7 +43,7 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
   };
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md my-4">
+    <div className="bg-white p-6 rounded-lg shadow-lg my-6">
       {view === "PartyA" && (
         <>
           <AddFormButton onClick={handleAddFormClick} />
@@ -54,7 +54,7 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
           )}
         </>
       )}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {forms.map((form) => (
           <FormCard
             key={form.id}

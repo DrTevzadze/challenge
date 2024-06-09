@@ -36,14 +36,14 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
   };
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md">
+    <div className="bg-white p-6 rounded-lg shadow-lg">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-2"
+        className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-4"
       >
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-xl font-bold mb-2"
+            className="block text-gray-700 text-lg font-bold mb-2"
             htmlFor="title"
           >
             Title
@@ -62,7 +62,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-xl font-bold mb-2"
+            className="block text-gray-700 text-lg font-bold mb-2"
             htmlFor="settlementAmount"
           >
             Settlement Amount
@@ -79,7 +79,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-xl font-bold mb-2"
+            className="block text-gray-700 text-lg font-bold mb-2"
             htmlFor="textArea"
           >
             Comments
@@ -97,7 +97,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md"
           >
             Submit
           </button>

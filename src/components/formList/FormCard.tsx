@@ -23,11 +23,11 @@ const FormCard: React.FC<FormCardProps> = ({
   if (!form) return null;
 
   return (
-    <div className="border p-4 m-2">
-      <h2>Form: {form.title}</h2>
-      <p>Status: {form.status}</p>
-      <p>Settlement Amount: ${form.settlementAmount}</p>
-      <p>Comments: {form.textArea}</p>
+    <div className="border p-6 m-4 rounded-lg shadow-md bg-gray-50">
+      <h2 className="text-xl font-bold mb-2">Form: {form.title}</h2>
+      <p className="mb-1"><strong>Status:</strong> {form.status}</p>
+      <p className="mb-1"><strong>Settlement Amount:</strong> ${form.settlementAmount}</p>
+      <p className="mb-4"><strong>Comments:</strong> {form.textArea}</p>
       {view === "PartyA" && form.status === "Pending" && (
         <button
           className="bg-yellow-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-yellow-600 transition-all duration-200"
@@ -38,7 +38,7 @@ const FormCard: React.FC<FormCardProps> = ({
       )}
       {view === "PartyA" && form.status === "Updated" && (
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ml-2"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200 ml-2"
           onClick={() => onResubmit(form)}
         >
           Resubmit
