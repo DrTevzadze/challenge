@@ -64,13 +64,13 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
   const selectedForm = forms.find((form) => form.id === selectedFormId);
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-6">
+    <div className="bg-white p-4 rounded-lg max-w-lg mx-auto">
+      <h1 className="text-2xl font-bold mb-6 text-blue-500">
         Party B - View and Respond to Forms
       </h1>
       <div className="mb-4">
         <label
-          className="block text-gray-700 text-lg font-bold mb-2"
+          className="block text-blue-500 text-lg font-bold mb-2"
           htmlFor="formSelect"
         >
           Select a Form
@@ -78,7 +78,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
         <select
           id="formSelect"
           onChange={handleSelectChange}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={selectedFormId || ""}
         >
           <option value="" disabled>
@@ -92,16 +92,21 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
         </select>
       </div>
       {selectedForm && (
-        <div className="mb-4">
-          <h2 className="text-xl font-bold mb-2">Form Details</h2>
-          <p className="mb-1">
-            <strong>Title:</strong> {selectedForm.title}
+        <div className="mb-4 bg-gray-100 p-4 rounded-lg shadow-md">
+          <h2 className="text-xl font-bold mb-4 text-blue-500">Form Details</h2>
+          <p className="mb-2">
+            <strong className="text-gray-700">Title:</strong>{" "}
+            {selectedForm.title}
           </p>
-          <p className="mb-1">
-            <strong>Settlement Amount:</strong> ${selectedForm.settlementAmount}
+          <p className="mb-2">
+            <strong className="text-gray-700">Settlement Amount:</strong>
+            <span className="text-green-500">
+              ${new Intl.NumberFormat().format(selectedForm.settlementAmount)}
+            </span>
           </p>
-          <p className="mb-4">
-            <strong>Comments:</strong> {selectedForm.textArea}
+          <p>
+            <strong className="text-gray-700">Comments:</strong>
+            <span className="text-gray-600"> {selectedForm.textArea}</span>
           </p>
         </div>
       )}
@@ -109,7 +114,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
         <div>
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-lg font-bold mb-2"
+              className="block text-blue-500 text-lg font-bold mb-2"
               htmlFor="actionSelect"
             >
               Action
@@ -117,7 +122,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
             <select
               id="actionSelect"
               onChange={handleActionChange}
-              className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={action}
             >
               <option value="" disabled>
@@ -131,7 +136,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
           {action === "update" && (
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-lg font-bold mb-2"
+                className="block text-blue-500 text-lg font-bold mb-2"
                 htmlFor="updatedAmount"
               >
                 Update Settlement Amount
@@ -142,13 +147,13 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
                 placeholder="Enter new settlement amount"
                 value={updatedAmount}
                 onChange={handleAmountChange}
-                className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
           )}
           <button
             onClick={handleSubmit}
-            className="bg-blue-600 text-white font-bold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
+            className="bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-blue-700 transition-all duration-200"
           >
             Submit
           </button>
