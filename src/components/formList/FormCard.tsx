@@ -61,11 +61,12 @@ const FormCard: React.FC<FormCardProps> = ({
             ${new Intl.NumberFormat().format(form.settlementAmount)}
           </span>
         </div>
-        <div className="flex items-start">
+        <hr className="my-4 border-t border-gray-300" />
+        <div className="flex flex-col items-start">
           <span className="text-base md:text-lg font-semibold text-gray-700">
             Comments:
           </span>
-          <p className="ml-2 text-base md:text-lg text-gray-700">
+          <p className="mt-1 text-base md:text-lg text-gray-700">
             {form.textArea}
           </p>
         </div>
