@@ -16,7 +16,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
 
   const handleApprove = () => {
     if (selectedFormId !== null) {
-      dispatch(updateFormsStatus({ id: selectedFormId, status: "Agreed" }));
+      dispatch(updateFormsStatus({ id: selectedFormId, status: "Approved" }));
       onClose();
     }
   };

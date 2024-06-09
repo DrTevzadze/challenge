@@ -25,7 +25,7 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
 
   const handleFormSubmit = (title: string, amount: number, textArea: string) => {
     if (editFormData) {
-      onUpdateForm(editFormData.id, title, amount, textArea, "pending");
+      onUpdateForm(editFormData.id, title, amount, textArea, "Pending");
     } else {
       onAddForm(title, amount, textArea);
     }

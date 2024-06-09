@@ -21,7 +21,7 @@ function Homepage() {
         title,
         settlementAmount: amount,
         textArea,
-        status: "pending",
+        status: "Pending",
       })
     );
     setNextId((prev) => prev + 1);
