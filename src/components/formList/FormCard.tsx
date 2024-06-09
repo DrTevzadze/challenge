@@ -69,7 +69,7 @@ const FormCard: React.FC<FormCardProps> = ({
       )}
       {view === "PartyA" && form.status === "Updated" && (
         <button
-          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200 ml-2"
+          className="mt-4 bg-blue-600 text-white font-bold px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200 ml-2"
           onClick={() => onResubmit(form)}
         >
           Resubmit

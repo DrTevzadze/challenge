@@ -66,7 +66,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
   return (
     <div className="bg-white p-4 rounded-lg max-w-lg mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-blue-500">
-        Party B - View and Respond to Forms
+        Handle Settlement Form Requests
       </h1>
       <div className="mb-4">
         <label
@@ -103,6 +103,10 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
             <span className="text-green-500">
               ${new Intl.NumberFormat().format(selectedForm.settlementAmount)}
             </span>
+          </p>
+          <p>
+            <strong className="text-gray-700">Status: </strong>
+            <span className="text-gray-600"> {selectedForm.status}</span>
           </p>
           <p>
             <strong className="text-gray-700">Comments:</strong>
