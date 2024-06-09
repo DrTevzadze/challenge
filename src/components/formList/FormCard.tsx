@@ -51,7 +51,7 @@ const FormCard: React.FC<FormCardProps> = ({
             Settlement Amount:
           </span>
           <span className="ml-2 text-lg font-medium text-green-500">
-            ${form.settlementAmount}
+            ${new Intl.NumberFormat().format(form.settlementAmount)}
           </span>
         </div>
         <div className="flex items-center">
