@@ -3,13 +3,40 @@ import { Provider } from "react-redux";
 import PartyA from "../components/PartyA";
 import PartyB from "../components/PartyB";
 import FormList from "../components/formList/FormList";
+import { addForm, updateForm } from "../slices/formSlice";
 import { store } from "../store";
 
 function Homepage() {
   const [currentView, setCurrentView] = useState<"PartyA" | "PartyB">("PartyA");
+  const [nextId, setNextId] = useState(1);
 
   const toggleView = () => {
     setCurrentView(currentView === "PartyA" ? "PartyB" : "PartyA");
+  };
+
+  const handleAddForm = (title: string, amount: number, textArea: string) => {
+    store.dispatch(
+      addForm({
+        id: nextId,
+        title,
+        settlementAmount: amount,
+        textArea,
+        status: "pending",
+      })
+    );
+    setNextId((prev) => prev + 1);
+  };
+
+  const handleUpdateForm = (id: number, title: string, amount: number, textArea: string, status: string) => {
+    store.dispatch(
+      updateForm({
+        id,
+        title,
+        settlementAmount: amount,
+        textArea,
+        status,
+      })
+    );
   };
 
   return (
@@ -27,8 +54,13 @@ function Homepage() {
           </button>
         </header>
         <main className="mt-4">
-          <FormList view={currentView} />
-          {currentView === "PartyA" ? <PartyA /> : <PartyB />}
+          {currentView === "PartyA" && <PartyA />}
+          <FormList
+            view={currentView}
+            onAddForm={handleAddForm}
+            onUpdateForm={handleUpdateForm}
+          />
+          {currentView === "PartyB" && <PartyB />}
         </main>
       </div>
     </Provider>

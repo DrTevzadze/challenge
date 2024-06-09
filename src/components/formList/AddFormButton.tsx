@@ -1,8 +1,10 @@
+import React from "react";
+
 interface FormButtonProps {
   onClick: () => void;
 }
 
-function AddFormButton({ onClick }: FormButtonProps) {
+const AddFormButton: React.FC<FormButtonProps> = ({ onClick }) => {
   return (
     <div
       className="inline-flex items-center bg-blue-500 w-auto text-white p-4 m-4 rounded-full cursor-pointer hover:bg-blue-600 transition-all duration-200"
@@ -12,6 +14,6 @@ function AddFormButton({ onClick }: FormButtonProps) {
       <span>Create New Form</span>
     </div>
   );
-}
+};
 
 export default AddFormButton;
