@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface PartyAFormProps {
   onAddForm: (title: string, settlementAmount: number, textArea: string) => void;
-  editFormData?: {
-    id: number;
-    title: string;
-    settlementAmount: number;
-    textArea: string;
-  } | null;
+  editFormData?: { title: string; settlementAmount: number; textArea: string } | null;
 }
 
 const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
   const [formData, setFormData] = useState({
-    title: "",
-    settlementAmount: "",
-    textArea: "",
+    title: '',
+    settlementAmount: '',
+    textArea: '',
   });
 
   useEffect(() => {
@@ -27,11 +22,9 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
     }
   }, [editFormData]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [id]: value,
     }));
@@ -39,11 +32,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAddForm(
-      formData.title,
-      Number(formData.settlementAmount),
-      formData.textArea
-    );
+    onAddForm(formData.title, Number(formData.settlementAmount), formData.textArea);
   };
 
   return (

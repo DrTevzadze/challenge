@@ -1,15 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import AddFormButton from "./AddFormButton";
 import FormCard from "./FormCard";
-import PartyAForm from "../forms/PartyAForm";
 import Modal from "../Modal";
+import PartyAForm from "../forms/PartyAForm";
 import { FormState } from "../../slices/formSlice";
 
 interface FormListProps {
   view: "PartyA" | "PartyB";
-  onAddForm: (title: string, settlementAmount: number, textArea: string) => void;
+  onAddForm: (title: string, amount: number, textArea: string) => void;
   onUpdateForm: (id: number, title: string, amount: number, textArea: string, status: string) => void;
 }
 
@@ -23,13 +23,23 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
     setShowForm(true);
   };
 
-  const handleFormSubmit = (title: string, settlementAmount: number, textArea: string) => {
+  const handleFormSubmit = (title: string, amount: number, textArea: string) => {
     if (editFormData) {
-      onUpdateForm(editFormData.id, title, settlementAmount, textArea, "pending");
+      onUpdateForm(editFormData.id, title, amount, textArea, "pending");
     } else {
-      onAddForm(title, settlementAmount, textArea);
+      onAddForm(title, amount, textArea);
     }
     setShowForm(false);
+  };
+
+  const handleEditForm = (form: FormState) => {
+    setEditFormData(form);
+    setShowForm(true);
+  };
+
+  const handleResubmitForm = (form: FormState) => {
+    setEditFormData(form);
+    setShowForm(true);
   };
 
   return (
@@ -37,9 +47,11 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
       {view === "PartyA" && (
         <>
           <AddFormButton onClick={handleAddFormClick} />
-          <Modal isVisible={showForm} onClose={() => setShowForm(false)}>
-            <PartyAForm onAddForm={handleFormSubmit} editFormData={editFormData} />
-          </Modal>
+          {showForm && (
+            <Modal onClose={() => setShowForm(false)} isVisible={showForm}>
+              <PartyAForm onAddForm={handleFormSubmit} editFormData={editFormData} />
+            </Modal>
+          )}
         </>
       )}
       <div className="space-y-4">
@@ -47,11 +59,9 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
           <FormCard
             key={form.id}
             id={form.id}
-            isPartyB={view === "PartyB"} // Pass the prop correctly
-            onEdit={() => {
-              setEditFormData(form);
-              setShowForm(true);
-            }}
+            view={view}
+            onEdit={handleEditForm}
+            onResubmit={handleResubmitForm}
           />
         ))}
       </div>
