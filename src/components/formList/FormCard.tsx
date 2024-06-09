@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
-import { FormState } from "../../slices/formSlice";
+import { FormState, updateFormsStatus } from "../../slices/formSlice";
 
 interface FormCardProps {
   id: number;
@@ -19,8 +19,13 @@ const FormCard: React.FC<FormCardProps> = ({
   const form = useSelector((state: RootState) =>
     state.forms.forms.find((f) => f.id === id)
   );
+  const dispatch = useDispatch();
 
   if (!form) return null;
+
+  const handleApprove = () => {
+    dispatch(updateFormsStatus({ id: form.id, status: "Approved" }));
+  };
 
   return (
     <div className="border p-6 m-4 rounded-lg shadow-md bg-purple-100">
@@ -68,12 +73,20 @@ const FormCard: React.FC<FormCardProps> = ({
         </button>
       )}
       {view === "PartyA" && form.status === "Disputed" && (
-        <button
-          className="mt-4 bg-blue-600 text-white font-bold px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
-          onClick={() => onResubmit(form)}
-        >
-          Resubmit
-        </button>
+        <div className="mt-4 space-x-2">
+          <button
+            className="bg-blue-600 text-white font-bold px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
+            onClick={() => onResubmit(form)}
+          >
+            Resubmit
+          </button>
+          <button
+            className="bg-green-600 text-white font-bold px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition-all duration-200"
+            onClick={handleApprove}
+          >
+            Agree
+          </button>
+        </div>
       )}
     </div>
   );
