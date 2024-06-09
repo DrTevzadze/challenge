@@ -34,9 +34,9 @@ const Notification: React.FC<NotificationProps> = ({
 
   return (
     <div
-      className={`fixed top-0 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-b-md shadow-lg transition-all duration-300 ease-in-out ${
-        show ? "opacity-100" : "opacity-0"
-      }`}
+      className={`fixed top-0 left-1/2 transform -translate-x-1/2 text-center bg-green-600  text-white px-4 py-4 rounded-b-md shadow-lg transition-all duration-300 ease-in-out ${
+        show ? "opacity-95" : "opacity-0"
+      } w-11/12 sm:w-auto`}
       style={{ top: show ? "20px" : "-50px" }}
     >
       <div className="flex items-center justify-between">
