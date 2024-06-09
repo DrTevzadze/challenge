@@ -42,9 +42,17 @@ function Homepage() {
           </button>
         </header>
         <main className="mt-4">
-          {currentView === "PartyA" && <PartyA />}
-          <FormList view={currentView} onAddForm={handleAddForm} />
-          {currentView === "PartyB" && <PartyB />}
+          {currentView === "PartyA" ? (
+            <>
+              <PartyA />
+              <FormList view={currentView} onAddForm={handleAddForm} />
+            </>
+          ) : (
+            <>
+              <FormList view={currentView} onAddForm={handleAddForm} />
+              <PartyB />
+            </>
+          )}
         </main>
       </div>
     </Provider>

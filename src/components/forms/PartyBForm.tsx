@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { updateFormsStatus, updateFormAmount } from "../../slices/formSlice";
 
-const PartyBForm: React.FC = () => {
+interface PartyBFormProps {
+  onClose: () => void;
+}
+
+const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
   const forms = useSelector((state: RootState) => state.forms.forms);
   const dispatch = useDispatch();
   const [selectedFormId, setSelectedFormId] = useState<number | null>(null);
@@ -13,12 +17,14 @@ const PartyBForm: React.FC = () => {
   const handleApprove = () => {
     if (selectedFormId !== null) {
       dispatch(updateFormsStatus({ id: selectedFormId, status: "Agreed" }));
+      onClose();
     }
   };
 
   const handleDispute = () => {
     if (selectedFormId !== null) {
       dispatch(updateFormsStatus({ id: selectedFormId, status: "Disputed" }));
+      onClose();
     }
   };
 
@@ -27,6 +33,7 @@ const PartyBForm: React.FC = () => {
       const amount = parseFloat(updatedAmount);
       dispatch(updateFormAmount({ id: selectedFormId, amount }));
       dispatch(updateFormsStatus({ id: selectedFormId, status: "Updated" }));
+      onClose();
     }
   };
 
@@ -52,20 +59,13 @@ const PartyBForm: React.FC = () => {
     } else if (action === "update") {
       handleUpdate();
     }
-
-    // Reset form state to close the form
-    setSelectedFormId(null);
-    setAction("");
-    setUpdatedAmount("");
   };
 
   const selectedForm = forms.find((form) => form.id === selectedFormId);
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold">
-        Party B - View and Respond to Forms
-      </h1>
+      <h1 className="text-2xl font-bold">Party B - View and Respond to Forms</h1>
       <div className="mb-4">
         <label
           className="block text-gray-700 text-lg font-bold mb-2"
@@ -92,15 +92,9 @@ const PartyBForm: React.FC = () => {
       {selectedForm && (
         <div className="mb-4">
           <h2 className="text-xl font-bold">Form Details</h2>
-          <p>
-            <strong>Title:</strong> {selectedForm.title}
-          </p>
-          <p>
-            <strong>Settlement Amount:</strong> ${selectedForm.settlementAmount}
-          </p>
-          <p>
-            <strong>Comments:</strong> {selectedForm.textArea}
-          </p>
+          <p><strong>Title:</strong> {selectedForm.title}</p>
+          <p><strong>Settlement Amount:</strong> ${selectedForm.settlementAmount}</p>
+          <p><strong>Comments:</strong> {selectedForm.textArea}</p>
         </div>
       )}
       {selectedFormId !== null && (
