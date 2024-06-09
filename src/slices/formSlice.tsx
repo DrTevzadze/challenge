@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface FormState {
+export interface FormState {
   id: number;
   title: string;
   settlementAmount: number;
   status: string;
-  textArea: string; // Add this if comments are included in the form state
+  textArea: string;
 }
 
 interface FormsState {
@@ -35,8 +35,14 @@ const formSlice = createSlice({
         form.settlementAmount = action.payload.amount;
       }
     },
+    updateForm: (state, action: PayloadAction<FormState>) => {
+      const index = state.forms.findIndex((form) => form.id === action.payload.id);
+      if (index !== -1) {
+        state.forms[index] = action.payload;
+      }
+    },
   },
 });
 
-export const { addForm, updateFormsStatus, updateFormAmount } = formSlice.actions;
+export const { addForm, updateFormsStatus, updateFormAmount, updateForm } = formSlice.actions;
 export default formSlice.reducer;

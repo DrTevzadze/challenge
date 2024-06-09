@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import PartyA from "../components/PartyA";
 import PartyB from "../components/PartyB";
 import FormList from "../components/formList/FormList";
-import { addForm } from "../slices/formSlice";
+import { addForm, updateForm } from "../slices/formSlice";
 import { store } from "../store";
 
 function Homepage() {
@@ -27,6 +27,18 @@ function Homepage() {
     setNextId((prev) => prev + 1);
   };
 
+  const handleUpdateForm = (id: number, title: string, amount: number, textArea: string, status: string) => {
+    store.dispatch(
+      updateForm({
+        id,
+        title,
+        settlementAmount: amount,
+        textArea,
+        status,
+      })
+    );
+  };
+
   return (
     <Provider store={store}>
       <div className="min-h-screen bg-gray-100 p-4">
@@ -42,17 +54,13 @@ function Homepage() {
           </button>
         </header>
         <main className="mt-4">
-          {currentView === "PartyA" ? (
-            <>
-              <PartyA />
-              <FormList view={currentView} onAddForm={handleAddForm} />
-            </>
-          ) : (
-            <>
-              <FormList view={currentView} onAddForm={handleAddForm} />
-              <PartyB />
-            </>
-          )}
+          {currentView === "PartyA" && <PartyA />}
+          <FormList
+            view={currentView}
+            onAddForm={handleAddForm}
+            onUpdateForm={handleUpdateForm}
+          />
+          {currentView === "PartyB" && <PartyB />}
         </main>
       </div>
     </Provider>

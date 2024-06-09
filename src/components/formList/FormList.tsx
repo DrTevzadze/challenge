@@ -1,31 +1,34 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import AddFormButton from "./AddFormButton";
 import FormCard from "./FormCard";
 import PartyAForm from "../forms/PartyAForm";
-import PartyBForm from "../forms/PartyBForm";
 import Modal from "../Modal";
+import { FormState } from "../../slices/formSlice";
 
 interface FormListProps {
   view: "PartyA" | "PartyB";
   onAddForm: (title: string, settlementAmount: number, textArea: string) => void;
+  onUpdateForm: (id: number, title: string, amount: number, textArea: string, status: string) => void;
 }
 
-const FormList: React.FC<FormListProps> = ({ view, onAddForm }) => {
+const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) => {
   const [showForm, setShowForm] = useState(false);
+  const [editFormData, setEditFormData] = useState<FormState | null>(null);
   const forms = useSelector((state: RootState) => state.forms.forms);
 
   const handleAddFormClick = () => {
+    setEditFormData(null);
     setShowForm(true);
   };
 
   const handleFormSubmit = (title: string, settlementAmount: number, textArea: string) => {
-    onAddForm(title, settlementAmount, textArea);
-    setShowForm(false);
-  };
-
-  const handleClose = () => {
+    if (editFormData) {
+      onUpdateForm(editFormData.id, title, settlementAmount, textArea, "pending");
+    } else {
+      onAddForm(title, settlementAmount, textArea);
+    }
     setShowForm(false);
   };
 
@@ -34,19 +37,22 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm }) => {
       {view === "PartyA" && (
         <>
           <AddFormButton onClick={handleAddFormClick} />
-          <Modal isVisible={showForm} onClose={handleClose}>
-            <PartyAForm onAddForm={handleFormSubmit} />
+          <Modal isVisible={showForm} onClose={() => setShowForm(false)}>
+            <PartyAForm onAddForm={handleFormSubmit} editFormData={editFormData} />
           </Modal>
         </>
       )}
-      {view === "PartyB" && (
-        <Modal isVisible={showForm} onClose={handleClose}>
-          <PartyBForm onClose={handleClose} />
-        </Modal>
-      )}
       <div className="space-y-4">
         {forms.map((form) => (
-          <FormCard key={form.id} id={form.id} />
+          <FormCard
+            key={form.id}
+            id={form.id}
+            isPartyB={view === "PartyB"} // Pass the prop correctly
+            onEdit={() => {
+              setEditFormData(form);
+              setShowForm(true);
+            }}
+          />
         ))}
       </div>
     </div>
