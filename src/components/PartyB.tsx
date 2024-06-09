@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import PartyBForm from "./forms/PartyBForm";
 import Modal from "./Modal";
 
-const PartyB: React.FC = () => {
+interface PartyBProps {
+  onFormSubmit: () => void;
+}
+
+const PartyB: React.FC<PartyBProps> = ({ onFormSubmit }) => {
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
@@ -11,6 +15,7 @@ const PartyB: React.FC = () => {
 
   const handleCloseForm = () => {
     setShowForm(false);
+    onFormSubmit();
   };
 
   return (
