@@ -10,10 +10,20 @@ import { FormState } from "../../slices/formSlice";
 interface FormListProps {
   view: "PartyA" | "PartyB";
   onAddForm: (title: string, amount: number, textArea: string) => void;
-  onUpdateForm: (id: number, title: string, amount: number, textArea: string, status: string) => void;
+  onUpdateForm: (
+    id: number,
+    title: string,
+    amount: number,
+    textArea: string,
+    status: string
+  ) => void;
 }
 
-const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) => {
+const FormList: React.FC<FormListProps> = ({
+  view,
+  onAddForm,
+  onUpdateForm,
+}) => {
   const [showForm, setShowForm] = useState(false);
   const [editFormData, setEditFormData] = useState<FormState | null>(null);
   const forms = useSelector((state: RootState) => state.forms.forms);
@@ -23,9 +33,13 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
     setShowForm(true);
   };
 
-  const handleFormSubmit = (title: string, amount: number, textArea: string) => {
+  const handleFormSubmit = (
+    title: string,
+    amount: number,
+    textArea: string
+  ) => {
     if (editFormData) {
-      onUpdateForm(editFormData.id, title, amount, textArea, "pending");
+      onUpdateForm(editFormData.id, title, amount, textArea, "Pending");
     } else {
       onAddForm(title, amount, textArea);
     }
@@ -43,18 +57,21 @@ const FormList: React.FC<FormListProps> = ({ view, onAddForm, onUpdateForm }) =>
   };
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md my-4">
+    <div className="bg-white p-6 rounded-lg shadow-lg my-6">
       {view === "PartyA" && (
         <>
           <AddFormButton onClick={handleAddFormClick} />
           {showForm && (
             <Modal onClose={() => setShowForm(false)} isVisible={showForm}>
-              <PartyAForm onAddForm={handleFormSubmit} editFormData={editFormData} />
+              <PartyAForm
+                onAddForm={handleFormSubmit}
+                editFormData={editFormData}
+              />
             </Modal>
           )}
         </>
       )}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {forms.map((form) => (
           <FormCard
             key={form.id}

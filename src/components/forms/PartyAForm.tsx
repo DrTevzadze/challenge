@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface PartyAFormProps {
-  onAddForm: (title: string, settlementAmount: number, textArea: string) => void;
-  editFormData?: { title: string; settlementAmount: number; textArea: string } | null;
+  onAddForm: (
+    title: string,
+    settlementAmount: number,
+    textArea: string
+  ) => void;
+  editFormData?: {
+    title: string;
+    settlementAmount: number;
+    textArea: string;
+  } | null;
 }
 
 const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    settlementAmount: '',
-    textArea: '',
+    title: "",
+    settlementAmount: "",
+    textArea: "",
   });
 
   useEffect(() => {
@@ -22,9 +30,11 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
     }
   }, [editFormData]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [id]: value,
     }));
@@ -32,18 +42,22 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAddForm(formData.title, Number(formData.settlementAmount), formData.textArea);
+    onAddForm(
+      formData.title,
+      Number(formData.settlementAmount),
+      formData.textArea
+    );
   };
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md">
+    <div className="bg-white p-4 rounded-lg max-w-lg mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-2"
+        className="bg-white rounded pt-6 flex flex-col gap-4"
       >
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-xl font-bold mb-2"
+            className="block text-blue-500 text-lg font-bold mb-2"
             htmlFor="title"
           >
             Title
@@ -56,13 +70,13 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
-            minLength={10}
-            maxLength={30}
+            minLength={6}
+            maxLength={20}
           />
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-xl font-bold mb-2"
+            className="block text-blue-500 text-lg font-bold mb-2"
             htmlFor="settlementAmount"
           >
             Settlement Amount
@@ -79,7 +93,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-xl font-bold mb-2"
+            className="block text-blue-500 text-lg font-bold mb-2"
             htmlFor="textArea"
           >
             Comments
@@ -89,7 +103,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
             placeholder="Enter any comments"
             value={formData.textArea}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
             rows={4}
             required
           />
@@ -97,7 +111,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md"
+            className="bg-blue-600 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded shadow-md transition-all duration-300"
           >
             Submit
           </button>
