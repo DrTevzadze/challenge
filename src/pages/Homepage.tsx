@@ -45,14 +45,14 @@ function Homepage() {
     setNotificationVisible(true);
     setTimeout(() => {
       setNotificationVisible(false);
-    }, 3000); // Hide after 3 seconds
+    }, 4000); // Hide after 3 seconds
   };
 
   return (
     <Provider store={store}>
       <div className="min-h-screen bg-gray-50 p-4">
         <Notification
-          message="PartyB has made changes!"
+          message="PartyB has made changes to your request. Please check the form!"
           visible={notificationVisible}
           onClose={() => setNotificationVisible(false)}
         />
