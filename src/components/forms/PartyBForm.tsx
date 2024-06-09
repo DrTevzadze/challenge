@@ -99,7 +99,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
             {selectedForm.title}
           </p>
           <p className="mb-2">
-            <strong className="text-gray-700">Settlement Amount:</strong>
+            <strong className="text-gray-700">Settlement Amount: </strong>
             <span className="text-green-500">
               ${new Intl.NumberFormat().format(selectedForm.settlementAmount)}
             </span>
