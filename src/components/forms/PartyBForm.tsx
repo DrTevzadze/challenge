@@ -23,7 +23,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
 
   const handleDispute = () => {
     if (selectedFormId !== null) {
-      dispatch(updateFormsStatus({ id: selectedFormId, status: "Disputed" }));
+      dispatch(updateFormsStatus({ id: selectedFormId, status: "Rejected" }));
       onClose();
     }
   };
@@ -32,7 +32,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
     if (selectedFormId !== null && updatedAmount !== "") {
       const amount = parseFloat(updatedAmount);
       dispatch(updateFormAmount({ id: selectedFormId, amount }));
-      dispatch(updateFormsStatus({ id: selectedFormId, status: "Updated" }));
+      dispatch(updateFormsStatus({ id: selectedFormId, status: "Disputed" }));
       onClose();
     }
   };
@@ -133,8 +133,8 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
                 Select an action...
               </option>
               <option value="approve">Approve</option>
-              <option value="dispute">Dispute</option>
-              <option value="update">Update</option>
+              <option value="dispute">Reject</option>
+              <option value="update">Dispute</option>
             </select>
           </div>
           {action === "update" && (

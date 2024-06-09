@@ -34,10 +34,10 @@ const FormCard: React.FC<FormCardProps> = ({
             {form.status === "Approved" && (
               <span className="h-3 w-3 rounded-full bg-green-500 inline-block mr-2"></span>
             )}
-            {form.status === "Disputed" && (
+            {form.status === "Rejected" && (
               <span className="h-3 w-3 rounded-full bg-red-500 inline-block mr-2"></span>
             )}
-            {(form.status === "Pending" || form.status === "Updated") && (
+            {(form.status === "Pending" || form.status === "Disputed") && (
               <span className="relative flex h-3 w-3 mr-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
@@ -67,9 +67,9 @@ const FormCard: React.FC<FormCardProps> = ({
           Edit
         </button>
       )}
-      {view === "PartyA" && form.status === "Updated" && (
+      {view === "PartyA" && form.status === "Disputed" && (
         <button
-          className="mt-4 bg-blue-600 text-white font-bold px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200 ml-2"
+          className="mt-4 bg-blue-600 text-white font-bold px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
           onClick={() => onResubmit(form)}
         >
           Resubmit
