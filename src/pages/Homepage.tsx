@@ -48,7 +48,7 @@ function Homepage() {
           </h1>
           <button
             onClick={toggleView}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
+            className="bg-blue-600 text-white px-4 py-2 font-bold rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
           >
             Switch to {currentView === "PartyA" ? "PartyB" : "PartyA"} View
           </button>

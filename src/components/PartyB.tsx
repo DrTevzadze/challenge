@@ -20,7 +20,7 @@ const PartyB: React.FC = () => {
       </h2>
       <button
         onClick={handleShowForm}
-        className="bg-blue-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
+        className="bg-blue-600 text-white font-bold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
       >
         Select Form
       </button>

@@ -23,7 +23,7 @@ const FormCard: React.FC<FormCardProps> = ({
   if (!form) return null;
 
   return (
-    <div className="border p-6 m-4 rounded-lg shadow-md bg-white">
+    <div className="border p-6 m-4 rounded-lg shadow-md bg-purple-100">
       <h2 className="text-2xl font-bold text-blue-700 mb-4">
         Form: {form.title}
       </h2>
@@ -56,12 +56,12 @@ const FormCard: React.FC<FormCardProps> = ({
         </div>
         <div className="flex items-center">
           <span className="text-lg font-semibold text-gray-700">Comments:</span>
-          <p className="ml-2 text-lg text-gray-600">{form.textArea}</p>
+          <p className="ml-2 text-lg text-gray-700">{form.textArea}</p>
         </div>
       </div>
       {view === "PartyA" && form.status === "Pending" && (
         <button
-          className="mt-4 bg-yellow-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-yellow-600 transition-all duration-200"
+          className="mt-4 bg-yellow-500 text-white px-4 py-2 font-bold rounded-md shadow-md hover:bg-yellow-600 transition-all duration-200"
           onClick={() => onEdit(form)}
         >
           Edit

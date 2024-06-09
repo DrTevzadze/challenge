@@ -148,7 +148,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
           )}
           <button
             onClick={handleSubmit}
-            className="bg-blue-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
+            className="bg-blue-600 text-white font-bold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition-all duration-200"
           >
             Submit
           </button>

@@ -111,7 +111,7 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition-all duration-300"
+            className="bg-blue-600 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded shadow-md transition-all duration-300"
           >
             Submit
           </button>
