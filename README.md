@@ -5,7 +5,7 @@
 This project is a Settlement Application that allows Party A and Party B to negotiate and agree on settlement amounts. The main features include:
 
 - Party A can submit and modify settlement amounts.
-- Party B can view settlement proposals, agree, or object to them.
+- Party B can view settlement proposals, agree, reject or dispute to them.
 - Real-time updates to ensure both parties see the latest information.
 - Handling of simultaneous modifications and responses.
 
@@ -15,8 +15,8 @@ This project is a Settlement Application that allows Party A and Party B to nego
 - TypeScript
 - Redux Toolkit
 - React Router
-- Classnames (for conditionally applying CSS classes)
 - Tailwind CSS
+- Classnames (for conditionally applying CSS classes)
 
 ## Getting Started
 
@@ -50,6 +50,7 @@ This project is a Settlement Application that allows Party A and Party B to nego
   - **PartyA.tsx**: Component for Party A's view.
   - **PartyB.tsx**: Component for Party B's view.
   - **forms**: Contains form components for Party B.
+    - **PartyAForm.tsx**: Form component for Party A to submit/edit settlement proposals.
     - **PartyBForm.tsx**: Form component for Party B to respond to settlement proposals.
   - **formList**: Contains the FormList and FormCard components.
     - **FormList.tsx**: Component to display a list of forms.
@@ -59,7 +60,6 @@ This project is a Settlement Application that allows Party A and Party B to nego
 - **slices**: Contains Redux slices for managing the application's state.
 
   - **formSlice.ts**: Redux slice for managing form states.
-  - **settlementSlice.ts**: Redux slice for managing settlement states.
 
 - **store**: Contains the Redux store configuration.
 
@@ -84,10 +84,6 @@ State management is handled using Redux Toolkit. There are two main slices:
   - `updateFormsStatus`: Updates the status of a form.
   - `updateFormAmount`: Updates the amount in a form.
   - `updateForm`: Updates the entire form.
-
-- **settlementSlice**: Manages the state of settlements.
-  - `addSettlement`: Adds a new settlement.
-  - `updateSettlement`: Updates the amount or status of a settlement.
 
 ## Future Improvements
 
