@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface NotificationProps {
   message: string;
@@ -6,11 +6,7 @@ interface NotificationProps {
   onClose: () => void;
 }
 
-const Notification: React.FC<NotificationProps> = ({
-  message,
-  visible,
-  onClose,
-}) => {
+function Notification({ message, visible, onClose }: NotificationProps) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -23,10 +19,11 @@ const Notification: React.FC<NotificationProps> = ({
 
   useEffect(() => {
     if (show) {
+      // Remove notification after a delay
       const timer = setTimeout(() => {
         setShow(false);
         onClose();
-      }, 3000); // Hide after 3 seconds
+      }, 5000); // Hide after 5 seconds
 
       return () => clearTimeout(timer);
     }
@@ -44,6 +41,6 @@ const Notification: React.FC<NotificationProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default Notification;

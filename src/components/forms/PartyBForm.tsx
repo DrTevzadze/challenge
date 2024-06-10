@@ -7,7 +7,7 @@ interface PartyBFormProps {
   onClose: () => void;
 }
 
-const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
+function PartyBForm({ onClose }: PartyBFormProps) {
   const forms = useSelector((state: RootState) => state.forms.forms);
   const dispatch = useDispatch();
   const [selectedFormId, setSelectedFormId] = useState<number | null>(null);
@@ -51,6 +51,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
     setUpdatedAmount(e.target.value);
   };
 
+  // Depending on the action taken by PartyB, redux store will update accordingly.
   const handleSubmit = () => {
     if (action === "approve") {
       handleApprove();
@@ -84,6 +85,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
           <option value="" disabled>
             Select a form...
           </option>
+          {/* Map over the forms in order to display them as an option in the select button */}
           {forms.map((form) => (
             <option key={form.id} value={form.id}>
               Form: {form.title}
@@ -92,6 +94,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
         </select>
       </div>
       {selectedForm && (
+        // Display current form's information
         <div className="mb-4 bg-gray-100 p-4 rounded-lg shadow-md">
           <h2 className="text-xl font-bold mb-4 text-blue-500">Form Details</h2>
           <p className="mb-2">
@@ -138,6 +141,7 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
             </select>
           </div>
           {action === "update" && (
+            // If PartyB chooses action "Update", display additional input in order to update the settlement amount
             <div className="mb-4">
               <label
                 className="block text-blue-500 text-lg font-bold mb-2"
@@ -165,6 +169,6 @@ const PartyBForm: React.FC<PartyBFormProps> = ({ onClose }) => {
       )}
     </div>
   );
-};
+}
 
 export default PartyBForm;

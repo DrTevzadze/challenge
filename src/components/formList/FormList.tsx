@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import AddFormButton from "./AddFormButton";
@@ -19,13 +19,11 @@ interface FormListProps {
   ) => void;
 }
 
-const FormList: React.FC<FormListProps> = ({
-  view,
-  onAddForm,
-  onUpdateForm,
-}) => {
+function FormList({ view, onAddForm, onUpdateForm }: FormListProps) {
   const [showForm, setShowForm] = useState(false);
   const [editFormData, setEditFormData] = useState<FormState | null>(null);
+
+  // forms will take the information from redux and handle functions will use this information to either resubmit or edit the current form
   const forms = useSelector((state: RootState) => state.forms.forms);
 
   const handleAddFormClick = () => {
@@ -84,6 +82,6 @@ const FormList: React.FC<FormListProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default FormList;

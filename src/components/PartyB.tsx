@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PartyBForm from "./forms/PartyBForm";
 import Modal from "./Modal";
 
@@ -6,7 +6,7 @@ interface PartyBProps {
   onFormSubmit: () => void;
 }
 
-const PartyB: React.FC<PartyBProps> = ({ onFormSubmit }) => {
+function PartyB({ onFormSubmit }: PartyBProps) {
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
@@ -31,6 +31,6 @@ const PartyB: React.FC<PartyBProps> = ({ onFormSubmit }) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default PartyB;

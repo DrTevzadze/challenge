@@ -1,7 +1,5 @@
-import React from "react";
-
-const PartyA: React.FC = () => {
+function PartyA() {
   return <div className="container mx-auto"></div>;
-};
+}
 
 export default PartyA;

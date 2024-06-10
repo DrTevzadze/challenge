@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { FormState, updateFormsStatus } from "../../slices/formSlice";
@@ -10,12 +9,7 @@ interface FormCardProps {
   onResubmit: (form: FormState) => void;
 }
 
-const FormCard: React.FC<FormCardProps> = ({
-  id,
-  view,
-  onEdit,
-  onResubmit,
-}) => {
+function FormCard({ id, view, onEdit, onResubmit }: FormCardProps) {
   const form = useSelector((state: RootState) =>
     state.forms.forms.find((f) => f.id === id)
   );
@@ -23,6 +17,7 @@ const FormCard: React.FC<FormCardProps> = ({
 
   if (!form) return null;
 
+  // Passed to Agree button. Once clicked, the form's status changes to Approved and finishes the forms further revision
   const handleApprove = () => {
     dispatch(updateFormsStatus({ id: form.id, status: "Approved" }));
   };
@@ -38,6 +33,7 @@ const FormCard: React.FC<FormCardProps> = ({
             Status:
           </span>
           <span className="ml-2 flex items-center text-base md:text-lg font-medium text-grey-800 relative">
+            {/* Conditionally render status button displayed after Status */}
             {form.status === "Approved" && (
               <span className="h-3 w-3 rounded-full bg-green-500 inline-block mr-2"></span>
             )}
@@ -58,6 +54,7 @@ const FormCard: React.FC<FormCardProps> = ({
             Settlement Amount:
           </span>
           <span className="ml-2 text-base md:text-lg font-medium text-green-500">
+            {/* Intl.NumberFormat() - A third-party API that will format the number and add necessary commas e.g 20000 = 20,000 */}
             ${new Intl.NumberFormat().format(form.settlementAmount)}
           </span>
         </div>
@@ -71,6 +68,7 @@ const FormCard: React.FC<FormCardProps> = ({
           </p>
         </div>
       </div>
+      {/* If form's status is still pending, PartyA has an option to edit the form */}
       {view === "PartyA" && form.status === "Pending" && (
         <button
           className="mt-4 bg-yellow-500 text-white px-3 md:px-4 py-2 font-bold rounded-md shadow-md hover:bg-yellow-600 transition-all duration-200"
@@ -79,6 +77,7 @@ const FormCard: React.FC<FormCardProps> = ({
           Edit
         </button>
       )}
+      {/* If form's status has been disputed, PartyA has an option to either Resubmit the form (change to a higher value of settlement amount) or Agree with the changes made by PartyB */}
       {view === "PartyA" && form.status === "Disputed" && (
         <div className="mt-4 flex flex-col sm:flex-row sm:justify-start md:space-x-2 sm:space-x-2 justify-between">
           <button
@@ -97,6 +96,6 @@ const FormCard: React.FC<FormCardProps> = ({
       )}
     </div>
   );
-};
+}
 
 export default FormCard;

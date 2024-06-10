@@ -13,7 +13,7 @@ interface PartyAFormProps {
   } | null;
 }
 
-const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
+function PartyAForm({ onAddForm, editFormData }: PartyAFormProps) {
   const [formData, setFormData] = useState({
     title: "",
     settlementAmount: "",
@@ -119,6 +119,6 @@ const PartyAForm: React.FC<PartyAFormProps> = ({ onAddForm, editFormData }) => {
       </form>
     </div>
   );
-};
+}
 
 export default PartyAForm;

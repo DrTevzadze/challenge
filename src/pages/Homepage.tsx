@@ -16,7 +16,7 @@ function Homepage() {
     setCurrentView(currentView === "PartyA" ? "PartyB" : "PartyA");
   };
 
-  const handleAddForm = (title: string, amount: number, textArea: string) => {
+  function handleAddForm(title: string, amount: number, textArea: string) {
     store.dispatch(
       addForm({
         id: nextId,
@@ -27,9 +27,15 @@ function Homepage() {
       })
     );
     setNextId((prev) => prev + 1);
-  };
+  }
 
-  const handleUpdateForm = (id: number, title: string, amount: number, textArea: string, status: string) => {
+  const handleUpdateForm = (
+    id: number,
+    title: string,
+    amount: number,
+    textArea: string,
+    status: string
+  ) => {
     store.dispatch(
       updateForm({
         id,
@@ -41,6 +47,7 @@ function Homepage() {
     );
   };
 
+  // Triggers notification
   const handleFormSubmit = () => {
     setNotificationVisible(true);
     setTimeout(() => {
@@ -68,13 +75,16 @@ function Homepage() {
           </button>
         </header>
         <main className="mt-6">
+          {/* Depending what view we have, we'll render components conditionally */}
           {currentView === "PartyA" && <PartyA />}
           <FormList
             view={currentView}
             onAddForm={handleAddForm}
             onUpdateForm={handleUpdateForm}
           />
-          {currentView === "PartyB" && <PartyB onFormSubmit={handleFormSubmit} />}
+          {currentView === "PartyB" && (
+            <PartyB onFormSubmit={handleFormSubmit} />
+          )}
         </main>
       </div>
     </Provider>

@@ -1,6 +1,4 @@
-import React from "react";
-
-const AddFormSVGIcon: React.FC = () => {
+function AddFormSVGIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +15,6 @@ const AddFormSVGIcon: React.FC = () => {
       <path d="M907.7 122.1l-39.2-39.2c-24-24-65.1-21.9-91.7 4.7L419.5 445 347 643.6l198.6-72.4L903 213.8c12.1-12.1 19.6-27.7 21.1-44 1.8-18.1-4.3-35.5-16.4-47.7zM512.6 519.3L447.5 543l23.7-65.1 264.7-264.7 40.9 41.7-264.2 264.4z m348-347.9l-41.3 41.3-40.9-41.7 40.9-40.9c3.1-3.1 6.2-3.9 7.6-3.9l37.6 37.6c-0.1 1.3-0.9 4.5-3.9 7.6z" />
     </svg>
   );
-};
+}
 
 export default AddFormSVGIcon;

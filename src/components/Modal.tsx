@@ -4,7 +4,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isVisible, onClose, children }) => {
+function Modal({ isVisible, onClose, children }: ModalProps) {
   if (!isVisible) return null;
 
   return (
@@ -20,6 +20,6 @@ const Modal: React.FC<ModalProps> = ({ isVisible, onClose, children }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Modal;
