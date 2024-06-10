@@ -50,6 +50,7 @@ This project is a Settlement Application that allows Party A and Party B to nego
   - **PartyA.tsx**: Component for Party A's view.
   - **PartyB.tsx**: Component for Party B's view.
   - **forms**: Contains form components for Party B.
+    - **PartyAForm.tsx**: Form component for Party A to submit/edit settlement proposals.
     - **PartyBForm.tsx**: Form component for Party B to respond to settlement proposals.
   - **formList**: Contains the FormList and FormCard components.
     - **FormList.tsx**: Component to display a list of forms.
