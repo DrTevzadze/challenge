@@ -45,7 +45,7 @@ function Homepage() {
     setNotificationVisible(true);
     setTimeout(() => {
       setNotificationVisible(false);
-    }, 5000); // Hide after 3 seconds
+    }, 5000);
   };
 
   return (
