@@ -43,3 +43,55 @@ This project is a Settlement Application that allows Party A and Party B to nego
    ```bash
    npm run dev
    ```
+
+## Project Structure
+
+- **components**: Contains the main UI components for the application.
+
+  - **Notification.tsx**: Component to display notifications.
+  - **PartyA.tsx**: Component for Party A's view.
+  - **PartyB.tsx**: Component for Party B's view.
+  - **forms**: Contains form components for Party B.
+    - **PartyBForm.tsx**: Form component for Party B to respond to settlement proposals.
+  - **formList**: Contains the FormList and FormCard components.
+    - **FormList.tsx**: Component to display a list of forms.
+    - **FormCard.tsx**: Component to display individual form details.
+  - **Modal.tsx**: Component to display modals.
+
+- **slices**: Contains Redux slices for managing the application's state.
+
+  - **formSlice.ts**: Redux slice for managing form states.
+  - **settlementSlice.ts**: Redux slice for managing settlement states.
+
+- **store**: Contains the Redux store configuration.
+
+- **pages**: Contains the main pages for the application.
+  - **Homepage.tsx**: The main page of the application.
+
+## Usage
+
+- **Switch Views**: You can switch between Party A and Party B views using the button on the homepage.
+- **Submit Form (Party A)**: Party A can submit a settlement proposal using the form provided.
+- **Respond to Form (Party B)**: Party B can view the submitted forms, approve, reject, or dispute them.
+- **Notifications**: When Party B makes changes, a notification will appear at the top center of the page indicating the change.
+
+## State Management
+
+State management is handled using Redux Toolkit. There are two main slices:
+
+- **formSlice**: Manages the state of forms.
+
+  - `addForm`: Adds a new form.
+  - `updateFormsStatus`: Updates the status of a form.
+  - `updateFormAmount`: Updates the amount in a form.
+  - `updateForm`: Updates the entire form.
+
+- **settlementSlice**: Manages the state of settlements.
+  - `addSettlement`: Adds a new settlement.
+  - `updateSettlement`: Updates the amount or status of a settlement.
+
+## Future Improvements
+
+- **Backend Integration**: Connect the application to a backend API to persist data and handle real-time updates more efficiently.
+- **User Authentication**: Implement user authentication to secure the application.
+- **Enhanced Notifications**: Improve the notification system to handle multiple notifications and provide more detailed information.
