@@ -5,7 +5,7 @@
 This project is a Settlement Application that allows Party A and Party B to negotiate and agree on settlement amounts. The main features include:
 
 - Party A can submit and modify settlement amounts.
-- Party B can view settlement proposals, agree, or object to them.
+- Party B can view settlement proposals, agree, reject or dispute to them.
 - Real-time updates to ensure both parties see the latest information.
 - Handling of simultaneous modifications and responses.
 
@@ -15,8 +15,8 @@ This project is a Settlement Application that allows Party A and Party B to nego
 - TypeScript
 - Redux Toolkit
 - React Router
-- Classnames (for conditionally applying CSS classes)
 - Tailwind CSS
+- Classnames (for conditionally applying CSS classes)
 
 ## Getting Started
 
