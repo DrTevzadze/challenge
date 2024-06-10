@@ -15,7 +15,6 @@ This project is a Settlement Application that allows Party A and Party B to nego
 - TypeScript
 - Redux Toolkit
 - React Router
-- Axios (for potential API requests)
 - Classnames (for conditionally applying CSS classes)
 - Tailwind CSS
 - uuid (for unique IDs)
@@ -67,8 +66,9 @@ This project is a Settlement Application that allows Party A and Party B to nego
 
 - **pages**: Contains the main pages for the application.
   - **Homepage.tsx**: The main page of the application.
+  - **Welcome.tsx**: A welcome page before redirecting to the main page.
 
-## Usage
+## Main Functionalities
 
 - **Switch Views**: You can switch between Party A and Party B views using the button on the homepage.
 - **Submit Form (Party A)**: Party A can submit a settlement proposal using the form provided.
