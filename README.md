@@ -59,7 +59,6 @@ This project is a Settlement Application that allows Party A and Party B to nego
 - **slices**: Contains Redux slices for managing the application's state.
 
   - **formSlice.ts**: Redux slice for managing form states.
-  - **settlementSlice.ts**: Redux slice for managing settlement states.
 
 - **store**: Contains the Redux store configuration.
 
@@ -84,10 +83,6 @@ State management is handled using Redux Toolkit. There are two main slices:
   - `updateFormsStatus`: Updates the status of a form.
   - `updateFormAmount`: Updates the amount in a form.
   - `updateForm`: Updates the entire form.
-
-- **settlementSlice**: Manages the state of settlements.
-  - `addSettlement`: Adds a new settlement.
-  - `updateSettlement`: Updates the amount or status of a settlement.
 
 ## Future Improvements
 
