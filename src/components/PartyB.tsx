@@ -26,7 +26,7 @@ const PartyB: React.FC<PartyBProps> = ({ onFormSubmit }) => {
       >
         Select Form
       </button>
-      <Modal isVisible={showForm} onClose={handleCloseForm}>
+      <Modal isVisible={showForm} onClose={() => setShowForm(false)}>
         <PartyBForm onClose={handleCloseForm} />
       </Modal>
     </div>
